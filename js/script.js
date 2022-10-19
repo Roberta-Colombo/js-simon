@@ -36,11 +36,10 @@ function hideNumbers(){
 }
 
 function collectUserNumbers(){
-    // const userNumber = document.getElementById('user-input').value;
+    const userNumber = document.getElementById('user-input').value;
     for(let i = 0; i < totalNumbers; i++){
-        const userNumber = document.getElementById('user-input').value; 
         userNumbers.push(userNumber);
-    }
+    }   
     
 }
    
