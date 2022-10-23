@@ -4,31 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="./js/libreria.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <title>Simon Says</title>
 </head>
 <body>
-    <div id="wrapper" class="ms-4 mt-4">
+    <div class="title mt-5 mb-5">
+        <span class="main-word fw-bolder">M E M O R Y</span> <span>G A M E</span>
+    </div>
 
-        <div class="num">
+    <div id="wrapper" class="py-5">
+        <div class="num-container">
+            <h4>Memorizza i seguenti numeri:</h4>
+
+            <div class="input-container">
+                <input id="user-input1" name="user-input" type="text">
+            
+                <input id="user-input2" name="user-input" type="text">
+                
+                <input id="user-input3" name="user-input" type="text">
+                
+                <input id="user-input4" name="user-input" type="text">
+    
+                <input id="user-input5" name="user-input" type="text">
+            </div>
 
         </div>
 
-        <div class="input-field">
-            <h4>Inserisci, uno alla volta, i numeri che ricordi:</h4>
+        <div class="input-field input-container">
+            <h4>Inserisci i numeri che ricordi<br> 
+            (devono essere compresi tra 1 e 50)</h4>
 
-            <input id="user-input" name="user-input" type="number">
+            <input id="user-input1" name="user-input" type="text">
+            
+            <input id="user-input2" name="user-input" type="text">
+            
+            <input id="user-input3" name="user-input" type="text">
+            
+            <input id="user-input4" name="user-input" type="text">
 
-            <button id="invia">Invia</button>
+            <input id="user-input5" name="user-input" type="text">
+
         </div>
 
-        <div id="user-choice-div"> 
-            <!-- stampa numeri utente -->
-        </div>
-
-        <button id="check-btn" class="d-none mt-4">Controlla</button>
+        <button id="check-btn" class="d-none mt-4">Controlla se hai vinto</button>
 
         <div id="result">
             <!-- stampa se giusto o sbagliato -->

@@ -5,79 +5,86 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 const randomNumbers = [];
 const totalNumbers = 5;
 const userNumbers = [];
-const numContainer = document.querySelector('.num');
-const sendBtn = document.getElementById('invia'); 
-const userInput = document.getElementById('user-input');
+const rightNumbers = [];
+const numContainer = document.querySelector('.num-container');
+const userInput = document.getElementsByTagName('input');
 const checkBtn = document.getElementById('check-btn');
 const resultDiv = document.getElementById('result');
-const errorLength = document.createElement('div');
-resultDiv.append(errorLength);
 
 
-
-function addNumbers(){
+//funzione per generare 5 numeri random tra 1 e 50:
+function startGame(){
+    let counter = 0;
     while(randomNumbers.length < totalNumbers){
-        const generatedNumber = randomNumber(1, 10);
+        const generatedNumber = randomNumber(1, 50);
         if(!randomNumbers.includes(generatedNumber)){
             randomNumbers.push(generatedNumber);
+            userInput[counter].value = generatedNumber;
+            counter++;
         } 
     }
     printNumbers();
 }
-addNumbers();
+startGame();
 
-console.log(randomNumbers);
-
+//funzione per stampare i 5 nr random in prima pagina:
 function printNumbers(){
-    numContainer.innerHTML = "<h4>Memorizza i seguenti numeri:</h4> " + randomNumbers;
+    userInput.innerHTML = randomNumbers;
+    
+    console.log(randomNumbers);
 }
 
+//dopo 3 secondi scompaiono e le caselle vengono svuotate:
 setTimeout(hideNumbers, 3000);
 
+function emptyInputs(){
+    for(let i = 0; i < userInput.length; i++){
+        userInput[i].value = '';
+    }
+}
+
+//funzione per nascondere i numeri random e far apparire le caselle vuote per l'utente:
 function hideNumbers(){
     numContainer.innerHTML = '';
     const inputField = document.querySelector('.input-field').classList.add('show');
     checkBtn.classList.remove('d-none');
     checkBtn.classList.add('show');
+    emptyInputs();
 }
 
-function collectUserNumbers(){
-    let userNumber = document.getElementById('user-input').value;    
-    userNumbers.push(userNumber);
-    console.log(userNumbers);
-    if(userNumbers.length == totalNumbers){
-        const userChoice = document.createElement('div');
-        const userChoiceDiv = document.getElementById('user-choice-div');
-        userChoiceDiv.append(userChoice);
-        userChoice.innerHTML = `
-        I numeri da te scelti sono: ${userNumbers}
-        `;
+//valutazione degli input inseriti e stampa di messaggio risultato per l'utente:
+function checkResult(){
+    for(let i = 0; i < userInput.length; i++){
+        const userNumber = parseInt(userInput[i].value);
+        userNumbers.push(userNumber);
     }
-}
+    console.log(userNumbers);
 
-sendBtn.addEventListener('click', collectUserNumbers);
-
-function getMatch() {
-    const matches = [];
-    for (let i = 0; i < randomNumbers.length; i++ ){
-        for (let x = 0; x < userNumbers.length; x++){
-            if (randomNumbers[i] === userNumbers[x]){
-                matches.push(randomNumbers[i]);
-            }     
+    for(let i = 0; i < userNumbers.length; i++){
+        if(randomNumbers.includes(userNumbers[i])){ 
+            if(!rightNumbers.includes(userNumbers[i])){
+                rightNumbers.push(userNumbers[i]);
+            }
         }
     }
-    console.log(matches); 
-    return matches;    
-}
+    console.log(rightNumbers);
 
+const resultMessage = document.createElement('div');
+resultDiv.append(resultMessage);
 
-function compareArrays(){
-    if(randomNumbers.length != userNumbers.length){
-        errorLength.innerHTML = "Inserire 5 numeri";       
+    // if(randomNumbers.length != rightNumbers.length){
+    // resultMessage.innerHTML = "<br>Inserire 5 numeri"    
+    // }  
+
+    if(randomNumbers.length == rightNumbers.length){
+        resultMessage.innerHTML = "<br>Complimenti! Hai indovinato tutti i numeri!" 
+    } 
+    else if(rightNumbers.length == 1){
+        resultMessage.innerHTML = `<br> Purtroppo hai indovinato un solo numero: ${rightNumbers}. Ritenta! `
     }
     else{
-        getMatch();
+        resultMessage.innerHTML = `<br> Hai indovinato ${rightNumbers.length} numeri ${rightNumbers} `
     }
-}    
+}
 
-checkBtn.addEventListener('click', compareArrays);
+checkBtn.addEventListener('click', checkResult);

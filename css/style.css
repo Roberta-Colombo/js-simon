@@ -1,7 +1,57 @@
+body {
+    font-family: 'Comfortaa', cursive;
+    background-color: purple;
+}
+
+#wrapper {
+    margin: 40px auto;
+    width: 60%;
+    text-align: center;
+    background-color: white;
+}
+
+.input-container {
+    margin: 0 auto;
+}
+
+.title {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-word {
+    font-size: 55px;
+}
+
 .input-field {
     display: none;
 }
 
 .show {
     display: block;
+}
+
+input {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    border-color: purple;
+    color: rgb(255, 165, 0);
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+button {
+    margin: 0 auto;
+    padding: 6px 9px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    background-color: rgb(255, 165, 0);
 }
